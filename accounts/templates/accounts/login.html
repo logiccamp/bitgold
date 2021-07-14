@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="bannerContainer">
+ 
+ 
+
+ <div class="bannerinsideInner">
+    <h2>User Login</h2>
+  </div>
+</div>
+<br>
+<div class="form-container user fadeInLeft wow">
+<form method=post name=mainform action='.'>
+  {% if message %}
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
+  {% endif %}
+  {% csrf_token %}
+<input type=hidden name=a value='do_login'>
+<input type=hidden name=follow value=''>
+<input type=hidden name=follow_id value=''>
+ <table width="100%" border=0 cellpadding=4 cellspacing=4>
+<tr>
+ <td width="40%" valign="top">Username:</td>
+<td width="70%"><input type=text name=username value='' class=inpts size=30 autofocus="autofocus"></td>
+</tr><tr>
+  <td valign="top">Password:</td>
+ <td><input type=password name=password value='' class=inpts size=30></td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type=submit value="Login" class=sbmt></td>
+</tr>
+ <tr>
+    <td height="45" valign="bottom">&nbsp;</td>
+    <td valign="bottom"><a href="index8083.html?a=forgot_password" class="small_text">Remember your login information</a></td>
+  </tr>
+</table>
+<center>
+  <a class="btn btn-danger" href="{% url 'signuppage' %}">create account here</a>
+</center>
+</form>
+
+<br><br>
+
+
+<style>
+.ft-logo {
+    background: url(images/ft-logo.html) no-repeat center left;
+    width: 160% ! important;
+    margin-bottom: 5px;
+    height: 36px; 
+    float: left;
+}
+</style>
+
+
+</div>
+</div>
+  </div>
+</div>
+{% endblock %}

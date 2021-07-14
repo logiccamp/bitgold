@@ -1,0 +1,89 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <div class="contentContainer">
+
+
+
+    <div class="inside_wrap">
+      <div class="inside_inner">
+
+          <div class="container">
+            <div class="glsr-reviews " id="jh9s3b3b">
+              
+              {% for rating in ratings %}
+              <div class="glsr-review bg-light py-3 p-2 px-4">
+                <h3 class="glsr-review-title text-secondary">{{rating.commentby}}</h3>
+                <p class="glsr-review-meta">
+                  {% if rating.rating == 5 %}
+                  {% include 'main/parts/five_star.html' %}
+                  {% elif rating.rating == 4 %}
+                  {% include 'main/parts/four_star.html' %}
+                  {% elif rating.rating == 3 %}
+                  {% include 'main/parts/three_star.html' %}
+                  {% elif rating.rating == 2 %}
+                  {% include 'main/parts/two_star.html' %}
+                  {% elif rating.rating == 1 %}
+                  {% include 'main/parts/one_star.html' %}
+                  {% endif %}
+
+                  <span class="glsr-review-date text-dark">{{rating.commend_at}}</span></p>
+                <div class="glsr-review-excerpt">
+                  <p class="text-dark">{{rating.review}}</p>
+                </div>
+                <div class="glsr-review-avatar d-flex">
+                  <img src="https://secure.gravatar.com/avatar/?s=96&amp;d=mm&amp;r=g" width="36"> &nbsp; <span class="text-dark">Shyora Nilesh</span>
+                </div>
+                <p class="glsr-review-author">
+                </p>
+              </div>
+              {% endfor %}
+              <hr>
+              <div class="container">
+                <h3 class="page-header">SUBMIT A REVIEW</h3>  
+                <form action="" class="form">
+                  <div class="form-group alert alert-muted my-1 py-1">
+                    <label for="">Your Name</label>
+                    <input type="text" name="commenby" class="form-control">
+                  </div>
+                  <div class="form-group alert alert-muted my-1 py-1">
+                    <label for="">Title</label>
+                    <input type="text" name="title" class="form-control">
+                  </div>
+
+                  <div class="form-group alert alert-muted my-1 py-1">
+                    <label for="">Rating</label>
+                    <select class="form-control" name="rating" id="">
+                      <option value="">Select</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                  <div class="form-group my-1 py-1 alert alert-muted">
+                    <label for="">Review</label>
+                    <textarea class="form-control" name="review" id="" cols="30" rows="10"></textarea>
+                  </div>
+                  <center>
+                    <input type="submit" class="btn btn-danger input-lg" value="SUBMIT">
+                  </center>
+                </form>
+              
+              </div>
+            </div>
+          </div>
+      
+    </div>
+    </div>
+      </div>
+    </div>
+
+
+{% endblock %}
+

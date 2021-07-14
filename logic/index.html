@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>whalescrypto.com</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+<link href="{% static 'public/styles/bootstrap.min.css' %}" rel='stylesheet' type='text/css'>
+<link href="{% static 'public/styles/animate.css' %}" rel='stylesheet' type='text/css'>
+<link href="{% static 'public/styles/custom.css' %}" rel='stylesheet' type='text/css'>
+<link href="{% static 'public/styles/tab.css' %}" rel="stylesheet" type='text/css'>
+<script src="{% static 'public/styles/jquery.js' %}" type='text/javascript'></script>
+<script src="{% static 'public/styles/bootstrap.min.js' %}" type='text/javascript'></script>
+<script src="{% static 'public/styles/tab.js' %}" type='text/javascript'></script>
+
+<link rel="icon" type="image/png" href="{% static 'public/styles/images/logo.ico' %}" sizes="32x32" />
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".btn-calcul").click(function() {
+			$(".calculate_ctn").toggle('slide');
+			$(".calculator").addClass('animated slideInRight');
+		});
+	});
+</script>
+
+
+<style>
+.ft-logo {
+    background: url(images/ft-logo.html) no-repeat center left;
+    width: 160% ! important;
+    margin-bottom: 5px;
+    height: 36px; 
+    float: left;
+}
+</style>
+</head>
+<body>
+
+<div id="fb-root"></div>
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "../connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+	<div class="loader-cont">
+    <div class="loader">
+      <img src="{% static 'public/styles/images/ajax-loader.gif' %}" alt="">
+      <div>
+        <p align="center" class="text-dark">Preparing investment panel...</p>
+      </div>  
+    </div>
+  </div>
+	<a href="javascript:void(0)" class="btn-calcul"></a>
+	
+			<div class="calculate_ctn">
+						<select id="calc_plan">
+						<option value="1">5% Daily for 30 DAYS</option>
+						<option value="2">5,5% Daily for 30 DAYS</option>
+						<option value="3">6% Daily for 30 DAYS</option>
+					</select>
+					<div><label>Deposit</label><input type="text" id="inv_amount" placeholder="100"></div>
+					<div><label>Return</label><input type="text" id="total_return" placeholder="150"></div>
+					<div><label>Profit</label><input type="text"  id="net_profit" placeholder="50"></div>
+				</div>
+	
+	<a href="https://www.facebook.com//" class="facebook" target="new"></a>
+	
+
+<div class="headerTopContainer">
+  <div class="headerTopInner zoomIn wow">
+    <div class="hdT-left"> <a href="{% url 'homepage' %}" id="logo"></a> </div>
+    <div class="hdT-mid">
+  
+      <p class="email"><img src="{% static 'public/styles/images/hdTop-icon2.png' %}"><a href="mailto:support@whalescrypto.com">support@whalescrypto.com</a></p>
+    </div>
+     
+    <div class="hdT-right"> 
+      {% if request.user.is_authenticated %}
+       <a class="btn my-a px-4" href="{% url 'dashboard' %}">My Account</a> 
+       <a class="btn danger" href="{% url 'logoutpapge' %}">Logout</a> 
+       {% else %}
+       <a class="signup" href="{% url 'signuppage' %}">Signup</a> <a class="login" href="{% url 'loginpage' %}">Login</a> 
+       {% endif %}
+      </div>
+    
+      </div>
+</div>
+<div class="headerBotContainer">
+  <div class="headerBotInner fadeInUp wow">
+    <div class="mainNavRight">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'aboutus' %}">About us</a></li>
+            <li><a href="{% url 'investmentplan' %}">Investment</a></li>
+            <li><a href="{% url 'faqs' %}">FAQs</a></li>
+          <li><a href="{% url 'ratings' %}">Our Ratings</a></li>
+	    	<li><a href="{% url 'support' %}">Support Center</a></li>
+	    	<li><a href="#">1 BTC - USD{{coins.bpi.USD.rate}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="select-lang">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><img src="styles/images/English.png"  style="width: 24px;"> English &nbsp; <span class="caret"></span></button>
+     <ul class="dropdown-menu">
+<!--<li><a href="#"><img src="styles/images/russian.png" style="width: 24px;"> ???????</a></li>-->
+          
+       <!--   <li><a href="#"><img src="styles/images/Polski.png" style="width: 24px;"> Polski</a></li>-->
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  {% block content %}
+  {% endblock %}
+
+
+
+
+
+
+
+
+  <div class="footerContainer">
+    <div class="fooetrInner">
+      <div class="footer">
+        <div class="ft-left-lis">
+          <ul class="ft-row ft-row1">
+            <a href="indexbc14.html?a=home" class="ft-logo"></a>
+            <li><a href="#">© 2018 whalescrypto.com<br>
+              All Rights Reserved.</a></li>
+          </ul>
+        </div>
+        <div class="ft-right-lis">
+          <ul class="ft-row ft-row2">
+            <li><a href="{% url 'aboutus' %}">About Us</a></li>
+            <li><a href="{% url 'investmentplan' %}">Investment</a></li>
+            <li><a href="{% url 'faqs' %}">FAQ</a></li>
+          </ul>
+          <ul class="ft-row ft-row4">
+            <li><a href="#">Whales Crypto Cloud . </a></li>
+            <li><a href="#">26, Haslucks Green Road</a></li>
+            <li><a href="#">Shirley, Solihull, B90 2EL, UK</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="solidContainer">
+    <div class="solidInner">
+      <div class="solid">
+         <a href="#" class="solid1"></a> <a href="#" class="solid2">
+
+         </a> <a href="#" class="solid3"></a> <a href="#" class="solid4"></a>
+  
+   <a href="#" class="solid5"></a> 
+  
+  
+    </div>
+    </div>
+    </div>
+  <script src="{% static '/public/styles/wow.js' %}"></script> 
+  <script src="{% static '/public/styles/wow.min.js' %}"></script> 
+  <script src="{% static '/public/styles/setting2.js' %}"></script> 
+  </body></html> 
+  

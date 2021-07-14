@@ -1,0 +1,281 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="bg-dark"  style="height: 75px !important">
+    <br />
+   <div class="bannerinsideInner" >
+    <h2 class="text-white">MY ACCOUNT </h2>
+  </div>
+</div>
+
+<div class="container">
+    <div class="alert">
+    <ul style="list-style: none; display: flex; justify-content: space-evenly;" class="text-dark">
+        <li> <a class="btn btn-link text-warning" href="{% url 'dashboard' %}">My Investment</a></li>
+        <li> <a class="btn btn-link text-warning" href="#">Account Settings</a></li>
+        <li> <a class="btn btn-link text-warning" href="#">Change Password</a></li>
+    </ul>
+    </div>    
+</div>
+
+  <div class="contentContainer">
+        <div class="dailyInner">
+           <div class="dl-top row">
+               <h3 class="text-dark" >INVESTMENT PLANS</h3>
+               <br />
+            {% for plan in plans %}
+
+            {% if plan.planname == 'Copper' %}
+            <div class="daily-row col-md-4 daily-row1 fadeInLeft wow">
+              <div class="daily-title">
+                <h3>{{plan.planname}} Plan</h3>
+              </div>
+               <div class="ctn-daily-mid"  >
+                 <p>Daily for 30 Calendar Days</p>
+                 <h3><span>{{plan.roi}}% </span>Total ROI</h3>
+                 <a href="#">Principal Included</a>
+                </div>
+                <h3>${{plan.min_deposit}} - ${{plan.max_deposit}} Deposit Amount</h3>
+            </div>
+            {% elif plan.planname == 'Silver' %}
+            <div class="daily-row daily-row2 fadeInLeft wow">
+                <div class="daily-title">
+                  <h3>{{plan.planname}} Plan</h3>
+                </div>
+                 <div class="ctn-daily-mid"  >
+                   <p>Daily for 30 Calendar Days</p>
+                   <h3><span>{{plan.roi}}% </span>Total ROI</h3>
+                   <a href="#">Principal Included</a>
+                  </div>
+                  <h3>${{plan.min_deposit}} - ${{plan.max_deposit}} Deposit Amount</h3>
+              </div>
+            {% else %}
+            <div class="daily-row daily-row3 fadeInLeft wow">
+                <div class="daily-title">
+                  <h3>{{plan.planname}} Plan</h3>
+                </div>
+                 <div class="ctn-daily-mid"  >
+                   <p>Daily for 30 Calendar Days</p>
+                   <h3><span>{{plan.roi}}% </span>Total ROI</h3>
+                   <a href="#">Principal Included</a>
+                  </div>
+                  <h3>${{plan.min_deposit}} - ${{plan.max_deposit}} Deposit Amount</h3>
+              </div>
+            {% endif %}
+
+                
+             {% endfor %}
+             <!-- <div class="daily-row daily-row2 fadeInUp wow">
+               <div class="daily-title">
+                 <h3>Silver Plan</h3>
+               </div>
+               <div class="ctn-daily-mid">
+                 <p>Daily for 30 Calendar Days</p>
+                 <h3><span>165% </span>Total ROI</h3>
+                 <a href="#">Principal Included</a> </div>
+               <h3>$2,000 - $9,999 Deposit Amount</h3>
+             </div>
+             <div class="daily-row daily-row3 fadeInRight wow">
+               <div class="daily-title">
+                 <h3>Gold Plan</h3>
+               </div>
+               <div class="ctn-daily-mid">
+                 <p>Daily for 30 Calendar Days</p>
+                 <h3><span>180% </span>Total ROI</h3>
+                 <a href="#">Principal Included</a> </div>
+               <h3>$10,000 - $50,000 Deposit Amount</h3>
+             </div> -->
+           </div>
+         </div>
+</div>
+<br/>
+    <div class="row my-3 bg-white" >
+        <div class="col-12 p-5 bg-white text-dark">
+            <div class="container">
+                
+                <h2>Invest Now</h2>
+                <p class="text-info">(Minimum amount - 10 USD, Maximum amount - 50000 USD)</p>
+            </div>
+            <div class="container">
+                <form action="." id="investform" class="form">
+                  {% csrf_token %}
+                    <div class="alert" style="display: none;" id="msg"></div>
+                    <div class="form-group">
+                        <label for="" class="w-100">Select Plan</label>
+                        <select required name="planname" id="planname" class="form-control input-lg">
+                            <option value="">Select plan</option>
+                            {% for plan in plans %}
+                            <option value="{{ plan.dividend }}">{{plan.planname}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="depositamount" class="w-100">Deposit amount in USD</label>
+                        <input required type="text" name="deposit" placeholder="Amount to invest" id="amountdeposit" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="amountreturn" class="w-100">return in USD</label>
+                        <input required type="text" name="amountreturn" disabled id="amountreturn" class="form-control" />
+                        
+                    </div>
+                    <div class="form-group">
+                        <p class="form-control">
+                            You invest <span id="btcdeposit">0.00 </span>BTC  you get <span id="btcreturn">0.000</span>BTC
+                        <div class="">
+
+                        </div>
+                        <input required style="display: none;" type="text" name="btcreturn" disabled id="btcreturninput" class="form-control" />
+                        <input required style="display: none;" type="text" name="btcdeposit" disabled id="btcdepositinput" class="form-control" />
+
+                        </p>
+                    </div>
+                    <div class="form-group py-3">
+                      <input type="submit" value="INVEST NOW" class="btn btn-success btn-lg" style="padding: 10px 32px;">
+                    </div>
+                </form>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+<div class="contentContainer">
+
+
+  <div class="mining-locations">
+		<div class="contentInner">
+		
+			<h3>Our mining locations map</h3>
+			
+			<ul>
+				<li><i>1</i>Ghana, Western Africa</li>
+				<li><i>2</i>Johannesburg, South Africa</li>
+				<li><i>3</i>New South Wales, Australia</li>
+				<li><i>4</i>Papua, Indonesia</li>
+				<li><i>5</i>Cuyuni-Mazaruni, Guyana</li>
+				<li><i>6</i>Potosi, Bolivia</li>	
+			</ul>
+		
+		</div>
+  </div>
+  
+
+
+
+
+
+</div>
+</div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $("input[name='deposit']").keyup(function(){
+    $.getJSON( "https://api.coindesk.com/v1/bpi/currentprice/usd.json", 
+        function( data) {
+            var planname = $('#planname').val()
+            $("#msg").hide()
+            $("#msg").removeClass('alert-danger')
+            if(planname == ''){
+                $("#msg").text("Plan name cannot be empty")
+                $("#msg").addClass('alert-danger')
+                $("#msg").show()
+                return false
+            }
+            var plandev = parseFloat(planname)
+            var planroi = parseFloat((plandev * 30)/100)
+            
+            var amountdeposit = parseFloat($("input[name='deposit']").val())
+
+            var btcamount = data.bpi.USD.rate_float
+
+            var btcdeposited = (amountdeposit/btcamount).toFixed(8)
+
+
+            var amountreturn = (parseFloat(amountdeposit * planroi)).toFixed(2)
+            
+            var btcreturn = (amountreturn / btcamount).toFixed(8)
+            $("#amountreturn").val(amountreturn)
+            $("#btcdeposit").text(btcdeposited)
+            $("#btcreturn").text(btcreturn)
+            document.getElementById('btcdepositinput').value = btcdeposited
+            document.getElementById('btcreturninput').value = btcreturn
+            // amountdeposit, amountreturn, btcdeposited, btcreturn
+        });
+    });
+
+
+    $("select[name='planname']").change(function(){
+    $.getJSON( "https://api.coindesk.com/v1/bpi/currentprice/usd.json", 
+        function( data) {
+            var amountdeposited = $('#amountdeposit').val()
+            $("#msg").hide()
+            $("#msg").removeClass('alert-danger')
+            if(amountdeposited == ''){
+                
+                return false
+            }
+            var planname = $('#planname').val()
+
+            var plandev = parseFloat(planname)
+            var planroi = parseFloat((plandev * 30)/100)
+            
+            var amountdeposit = parseFloat($("input[name='deposit']").val())
+
+            var btcamount = data.bpi.USD.rate_float
+
+            var btcdeposited = (amountdeposit/btcamount).toFixed(8)
+
+
+            var amountreturn = (parseFloat(amountdeposit * planroi)).toFixed(2)
+            
+            var btcreturn = (amountreturn / btcamount).toFixed(8)
+            $("#amountreturn").val(amountreturn)
+            $("#btcdeposit").text(btcdeposited)
+            $("#btcreturn").text(btcreturn)
+            document.getElementById('btcdepositinput').value = btcdeposited
+            document.getElementById('btcreturninput').value = btcreturn
+            // amountdeposit, amountreturn, btcdeposited, btcreturn
+        });
+    });
+
+    $("#investform").on('submit', function(e){
+      e.preventDefault()
+      const planplanname = $('#planname').val();
+      const amountdeposit = $('#amountdeposit').val();
+      const amountreturn = $('#amountreturn').val();
+      const btcreturninput = $('#btcreturninput').val();
+      const btcdepositinput = $('#btcdepositinput').val();
+      $('.loader-cont').show()
+      var data = {
+        'plan' : planplanname,
+        'deposit' : amountdeposit,
+        'amountreturn' : amountreturn,
+        'btcdeposit' : btcdepositinput,
+        'btcreturn' : btcreturninput,
+      }
+
+      setTimeout(() => {
+        fetch('/api/invest/' , {
+          method : 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body : JSON.stringify(data)
+        }).then(result => result.json())
+        .then(result=>{
+          if(result.status == false || result.status == 'false'){
+            $("#report").text (result.message)
+            $('#report').show()
+            $('.loader-cont').hide()
+            return false;
+          }
+           alert('Investement added... redirecting....')
+          window.location.assign('{% url "compeleteinvestment" %}')
+        })
+
+      }, 2000);
+    })
+</script>
+{% endblock %}

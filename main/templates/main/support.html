@@ -1,0 +1,112 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="bannerContainer">
+ 
+ 
+
+
+<div class="bannerinsideInner">
+    <h2>Contact Us</h2>
+  </div>
+</div>
+
+<div class="inside_wrap">
+  <div class="inside_inner">
+    <div class="contactusblockleft">
+      <div class="addresscontainer zoomIn wow">
+        <h2 class="section-title">Address</h2>
+        <span>
+	WhalesCrypto
+<br>
+		26 Haslucks Green Road<br>
+Shirley, Solihull, B90 2EL, UK
+		
+		
+		</span>
+    
+        <h4 class="section-title">Email</h4>
+        <a href="mailto:support@ukpme.com">support@whalescrypto.com</a>
+        </ul>
+      </div>
+      <div class="mapcontainer">
+     
+	
+	  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.540595521502!2d-1.8318600841151518!3d52.41500185175748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870b974435c9a6b%3A0x79ec4707466f7e41!2s26+Haslucks+Green+Rd%2C+Shirley%2C+Solihull+B90+2EL%2C+UK!5e0!3m2!1sen!2sus!4v1488603886180" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+	  
+	  
+	  </div>
+    </div>
+    <div class="contactusblockright zoomIn wow">
+      <div class="contact_form zoomIn wow"> 
+
+<script language=javascript>
+
+function checkform() {
+  if (document.mainform.name.value == '') {
+    alert("Please type your full name!");
+    document.mainform.name.focus();
+    return false;
+  }
+  if (document.mainform.email.value == '') {
+    alert("Please enter your e-mail address!");
+    document.mainform.email.focus();
+    return false;
+  }
+  if (document.mainform.message.value == '') {
+    alert("Please type your message!");
+    document.mainform.message.focus();
+    return false;
+  }
+  return true;
+}
+
+</script>
+
+<form method=post name=mainform onsubmit="return checkform()">
+<input type=hidden name=a value=support>
+<input type=hidden name=action value=send>
+
+ 
+<table width="100%" border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td width="30%" valign="top"><font color="#122732"><b>Your Name:</b></td>
+ <td><input type="text" name="name" value="" size=30 class=inpts></td>
+</tr>
+<tr>
+  <td valign="top"><font color="#122732"><b>Your Email:</b></td>
+ <td><input type="text" name="email" value="" size=30 class=inpts></td>
+</tr>
+<tr valign="top">
+<td><font color="#122732"><b>Message:</b></td>
+<td><textarea name=message class=inpts cols=45 rows=4></textarea>
+</tr>
+<tr valign="top">
+ <td>&nbsp;</td>
+ <td><input type=submit value="Send" class=sbmt></td>
+</tr></table>
+</form>
+</div>
+
+
+
+<style>
+.ft-logo {
+    background: url(images/ft-logo.html) no-repeat center left;
+    width: 160% ! important;
+    margin-bottom: 5px;
+    height: 36px; 
+    float: left;
+}
+</style>
+
+
+</div>
+</div>
+  </div>
+</div>
+{% endblock %}

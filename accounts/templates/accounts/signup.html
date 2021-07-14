@@ -1,0 +1,220 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="bannerContainer">
+ 
+ 
+
+<div class="bannerinsideInner">
+    <h2>User Registration</h2>
+  </div>
+</div>
+
+<div class="contentContainer">
+<div class="form-container user fadeInLeft wow">  
+ 
+
+ <script language=javascript>
+ function checkform() {
+  if (document.regform.fullname.value == '') {
+    alert("Please enter your full name!");
+    document.regform.fullname.focus();
+    return false;
+  }
+ 
+  
+  if (document.regform.username.value == '') {
+    alert("Please enter your username!");
+    document.regform.username.focus();
+    return false;
+  }
+  if (!document.regform.username.value.match(/^[A-Za-z0-9_\-]+$/)) {
+    alert("For username you should use English letters and digits only!");
+    document.regform.username.focus();
+    return false;
+  }
+  if (document.regform.password.value == '') {
+    alert("Please enter your password!");
+    document.regform.password.focus();
+    return false;
+  }
+  if (document.regform.password.value != document.regform.password2.value) {
+    alert("Please check your password!");
+    document.regform.password2.focus();
+    return false;
+  }
+ 
+  
+  if (document.regform.email.value == '') {
+    alert("Please enter your e-mail address!");
+    document.regform.email.focus();
+    return false;
+  }
+  if (document.regform.email.value != document.regform.email1.value) {
+    alert("Please retupe your e-mail!");
+    document.regform.email.focus();
+    return false;
+  }
+
+  for (i in document.regform.elements) {
+    f = document.regform.elements[i];
+    if (f.name && f.name.match(/^pay_account/)) {
+      if (f.value == '') continue;
+      var notice = f.getAttribute('data-validate-notice');
+      var invalid = 0;
+      if (f.getAttribute('data-validate') == 'regexp') {
+        var re = new RegExp(f.getAttribute('data-validate-regexp'));
+        if (!f.value.match(re)) {
+          invalid = 1;
+        }
+      } else if (f.getAttribute('data-validate') == 'email') {
+        var re = /^[^\@]+\@[^\@]+\.\w{2,4}$/;
+        if (!f.value.match(re)) {
+          invalid = 1;
+        }
+      }
+      if (invalid) {
+        alert('Invalid account format. Expected '+notice);
+        f.focus();
+        return false;
+      }
+    }
+  }
+
+  if (document.regform.agree.checked == false) {
+    alert("You have to agree with the Terms and Conditions!");
+    return false;
+  }
+
+  return true;
+ }
+
+ function IsNumeric(sText) {
+  var ValidChars = "0123456789";
+  var IsNumber=true;
+  var Char;
+  if (sText == '') return false;
+  for (i = 0; i < sText.length && IsNumber == true; i++) { 
+    Char = sText.charAt(i); 
+    if (ValidChars.indexOf(Char) == -1) {
+      IsNumber = false; 
+    }
+  }
+  return IsNumber;
+ }
+
+ 
+ </script>
+ <div>
+ </div>
+ <form method="post" action="." name="regform">
+  {% if message %}
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
+  {% endif %}
+  {% csrf_token %}
+<input type=hidden name=a value="signup">
+<input type=hidden name=action value="signup">
+<table width="100%" border=0 cellpadding=4 cellspacing=4>
+    <tr>
+        <td colspan="2"><h5 class="sign1">Account Information</h5></td>
+      </tr>
+      <tr>
+ <td>Your Username:</td>
+ <td><input type=text name=username value="" class=inpts size=30></td>
+</tr>
+<tr>
+ <td>Define Password:</td>
+ <td><input type=password name='password1' value="" class=inpts size=30></td>
+</tr><tr>
+ <td>Retype Password:</td>
+ <td><input type=password name='password2' value="" class=inpts size=30></td>
+</tr>
+<tr>
+ <td>Your E-mail Address:</td>
+ <td><input type=text name='email1' value="" class=inpts size=30></td>
+</tr>
+<tr>
+ <td>Retype Your E-mail:</td>
+ <td><input type=text name='email2' value="" class=inpts size=30></td>
+</tr>
+<tr>
+    
+<tr>
+      
+        <tr>
+      
+        <td colspan="2">
+      
+        <h5 class="sign2">
+        Payment Systems
+        </h5>
+      
+        </td>
+      
+        </tr>
+        
+        
+ <tr>
+ <td>Your Bitcoin Account:</td>
+ <td><input type=text class=inpts size=30 name='pay_account' value="" data-validate="regexp" data-validate-regexp="^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$" data-validate-notice="Bitcoin Address" placeholder=""></td>
+</tr>
+<tr>
+    
+    
+ <tr>
+      
+        <td colspan="2">
+      
+        <h5 class="sign3">
+        Security Systems
+        </h5>
+      
+        </td>
+      
+        </tr>
+   <tr>     
+ <td>Secret question:</td>
+ <td><input type=text name="sq" value="" class=inpts size=30></td>
+</tr>
+<tr>
+ <td>Secret answer:</td>
+ <td><input type=text name="sa" value="" class=inpts size=30></td>
+</tr>
+
+<tr>
+ <td colspan=2><input type=checkbox name='agree' value=1  > I agree with <a href="indexa972.html?a=rules">Terms and conditions</a></td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type="submit" name="submit-it" value="Register" class=sbmt></td>
+</tr></table>
+</form>
+
+
+
+
+
+
+
+<style>
+.ft-logo {
+    background: url(images/ft-logo.html) no-repeat center left;
+    width: 160% ! important;
+    margin-bottom: 5px;
+    height: 36px; 
+    float: left;
+}
+</style>
+
+
+</div>
+</div>
+  </div>
+</div>
+{% endblock %}

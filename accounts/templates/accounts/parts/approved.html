@@ -1,0 +1,13 @@
+<div class="alert alert-success">
+    <div class="d-flex">
+      <div class="img" align="center">
+        <img src="{% static 'public/styles/images/investmenticon.png' %}" style="height: 150px;" alt="" class="img-fluid">
+      </div>
+    </div>
+    <h3 align="center">{{ myinvestment.plan.planname }}</h3>
+    <div class="amout" align="center">
+      <p>Amount Invested : <strong>${{myinvestment.deposit}}</strong></p>
+      <p>Expected Return : <strong>${{myinvestment.amountreturn}}</strong></p>
+      <p>Expected Return in BTC : <strong>${{myinvestment.btcreturn}}</strong></p>
+    </div>
+  </div>
